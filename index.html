@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tomographic Summer Chill · ETH Zürich · 30–31 July 2026</title>
+<meta name="description" content="A two-morning tomography workshop at ETH Zürich, 30–31 July 2026. Dense arrays, DAS, ambient noise, full-waveform inversion and electrical conductivity imaging. In person in the LEE building and online.">
+
+<!-- Open Graph / social preview — replace the URL + image once hosted -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tomographic Summer Chill — ETH Zürich, 30–31 July 2026">
+<meta property="og:description" content="Two mornings of tomography: dense arrays, DAS, ambient noise, FWI and conductivity imaging. Register to get the Zoom link.">
+<meta property="og:url" content="https://wangyuhan2002.github.io/2026-tomo-workshop/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS — palette derived from seismic velocity-anomaly maps:
+   cool = fast anomaly (primary), warm = slow/hot anomaly (pop)
+   ============================================================ */
+:root{
+  color-scheme: light dark;
+
+  /* neutrals — cool slate bias, not pure grey */
+  --bg:        #e9edf1;
+  --surface:   #ffffff;
+  --surface-2: #f3f6f8;
+  --ink:       #101d27;
+  --ink-soft:  #33454f;
+  --muted:     #5d6f7b;
+  --line:      #d3dbe1;
+  --line-soft: #e2e8ed;
+
+  /* accents */
+  --cool:      #0d6e88;   /* teal-azure — primary */
+  --cool-2:    #1a93b0;
+  --cool-wash: #e2f0f4;
+  --warm:      #e5573b;   /* coral — the "hot anomaly", used sparingly */
+  --warm-2:    #f0704f;
+
+  --grid:      rgba(13,110,136,.10);
+  --shadow:    0 1px 2px rgba(16,29,39,.05), 0 12px 32px -12px rgba(16,29,39,.14);
+
+  /* type scale */
+  --s--1: .82rem;
+  --s-0:  1rem;
+  --s-1:  1.15rem;
+  --s-2:  1.4rem;
+  --s-3:  1.85rem;
+  --s-4:  2.5rem;
+  --s-hero: clamp(2.9rem, 9.5vw, 6.6rem);
+
+  --maxw: 1080px;
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:        #0a141d;
+    --surface:   #101f2a;
+    --surface-2: #0d1a24;
+    --ink:       #e9eff3;
+    --ink-soft:  #c2ced6;
+    --muted:     #8195a2;
+    --line:      #22333f;
+    --line-soft: #1a2a35;
+    --cool:      #34b3d3;
+    --cool-2:    #58c8e4;
+    --cool-wash: #0f2731;
+    --warm:      #ff6f4f;
+    --warm-2:    #ff855f;
+    --grid:      rgba(52,179,211,.12);
+    --shadow:    0 1px 2px rgba(0,0,0,.3), 0 18px 40px -16px rgba(0,0,0,.6);
+  }
+}
+/* explicit toggle overrides the media query in both directions */
+:root[data-theme="light"]{
+  --bg:#e9edf1; --surface:#fff; --surface-2:#f3f6f8; --ink:#101d27; --ink-soft:#33454f;
+  --muted:#5d6f7b; --line:#d3dbe1; --line-soft:#e2e8ed; --cool:#0d6e88; --cool-2:#1a93b0;
+  --cool-wash:#e2f0f4; --warm:#e5573b; --warm-2:#f0704f; --grid:rgba(13,110,136,.10);
+  --shadow:0 1px 2px rgba(16,29,39,.05), 0 12px 32px -12px rgba(16,29,39,.14);
+}
+:root[data-theme="dark"]{
+  --bg:#0a141d; --surface:#101f2a; --surface-2:#0d1a24; --ink:#e9eff3; --ink-soft:#c2ced6;
+  --muted:#8195a2; --line:#22333f; --line-soft:#1a2a35; --cool:#34b3d3; --cool-2:#58c8e4;
+  --cool-wash:#0f2731; --warm:#ff6f4f; --warm-2:#ff855f; --grid:rgba(52,179,211,.12);
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 18px 40px -16px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-size:var(--s-0); line-height:1.6; -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif; text-wrap:balance; margin:0; line-height:1.02; letter-spacing:-.01em}
+a{color:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.1rem,4vw,2.4rem)}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:var(--s--1); letter-spacing:.18em; text-transform:uppercase; color:var(--cool)}
+
+/* skip link */
+.skip{position:absolute; left:-999px; top:0; background:var(--cool); color:#fff; padding:.6rem 1rem; z-index:50; border-radius:0 0 8px 0}
+.skip:focus{left:0}
+:focus-visible{outline:3px solid var(--warm); outline-offset:2px; border-radius:4px}
+
+/* ============================ HERO ============================ */
+.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line)}
+#field{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0}
+.hero-inner{position:relative; z-index:1; padding:clamp(3rem,9vh,6rem) 0 clamp(2.6rem,7vh,4.2rem)}
+.hero-eyebrow{display:flex; gap:.8rem 1.2rem; flex-wrap:wrap; align-items:center; margin-bottom:1.4rem}
+.hero-eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--warm)}
+.hero h1{
+  font-size:var(--s-hero); font-weight:800; letter-spacing:-.03em; max-width:14ch;
+}
+.hero h1 .em{color:var(--cool); font-style:italic; font-weight:700}
+.lede{max-width:52ch; margin:1.5rem 0 0; font-size:clamp(1.05rem,2.2vw,1.3rem); color:var(--ink-soft)}
+.facts{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:2rem}
+.chip{
+  display:inline-flex; align-items:center; gap:.5rem; padding:.5rem .85rem;
+  background:var(--surface); border:1px solid var(--line); border-radius:999px;
+  font-size:var(--s--1); box-shadow:var(--shadow); backdrop-filter:blur(4px)
+}
+.chip svg{width:15px; height:15px; color:var(--cool); flex:none}
+.cta-row{display:flex; flex-wrap:wrap; gap:.8rem; margin-top:2.2rem}
+.btn{
+  display:inline-flex; align-items:center; gap:.55rem; padding:.85rem 1.5rem;
+  border-radius:10px; font-weight:600; font-size:var(--s-0); text-decoration:none;
+  border:1px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--warm); color:#fff; box-shadow:0 8px 22px -8px var(--warm)}
+.btn-primary:hover{background:var(--warm-2)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--cool); color:var(--cool)}
+
+/* ============================ SECTIONS ============================ */
+section{padding:clamp(3rem,8vh,5.5rem) 0}
+.sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:2.2rem}
+.sec-head h2{font-size:var(--s-4); font-weight:700}
+.sec-head p{color:var(--muted); margin:.4rem 0 0; max-width:44ch}
+
+/* ---- Programme: two day-traces ---- */
+.days{display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.2rem,3vw,2.4rem)}
+@media (max-width:760px){ .days{grid-template-columns:1fr} }
+.day{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+.day-head{padding:1.3rem 1.4rem; border-bottom:1px solid var(--line-soft); display:flex; justify-content:space-between; align-items:flex-start; gap:.8rem}
+.day-head .d-date{font-family:"Bricolage Grotesque",sans-serif; font-size:1.5rem; font-weight:700; line-height:1}
+.day-head .d-sub{color:var(--muted); font-size:var(--s--1); margin-top:.35rem}
+.d-room{font-family:"IBM Plex Mono",monospace; font-size:var(--s--1); background:var(--cool-wash); color:var(--cool); padding:.3rem .6rem; border-radius:6px; white-space:nowrap}
+
+.slot{display:grid; grid-template-columns:auto 1fr; gap:1rem; padding:1rem 1.4rem; border-top:1px solid var(--line-soft)}
+.slot:first-of-type{border-top:none}
+.slot .time{font-family:"IBM Plex Mono",monospace; font-size:var(--s--1); color:var(--cool); padding-top:.15rem; white-space:nowrap}
+.slot-main{display:flex; flex-direction:column; gap:.35rem; min-width:0}
+.slot .who{font-weight:700; color:var(--ink)}
+.slot .who a{color:inherit; text-decoration:none; border-bottom:1px solid var(--line); transition:color .12s ease, border-color .12s ease}
+.slot .who a::after{content:"↗"; font-size:.72em; margin-left:.18em; color:var(--muted); font-weight:400}
+.slot .who a:hover{color:var(--cool); border-color:var(--cool)}
+.slot .who a:hover::after{color:var(--cool)}
+.slot .title{color:var(--ink-soft); font-size:var(--s--1); line-height:1.45}
+.slot .tag{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--warm); border:1px solid currentColor; border-radius:5px; padding:.05rem .4rem; margin-left:.5rem; vertical-align:middle}
+.slot .tbd{color:var(--muted); font-style:italic}
+.slot.brk{background:var(--surface-2)}
+.slot.brk .who{font-weight:500; color:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:var(--s--1)}
+.slot.brk .time{color:var(--muted)}
+
+/* expandable abstract */
+.abs{margin-top:.15rem}
+.abs summary{display:inline-flex; align-items:center; gap:.35rem; cursor:pointer; list-style:none;
+  font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--cool); font-weight:600; width:max-content; padding:.1rem 0}
+.abs summary::-webkit-details-marker{display:none}
+.abs summary::after{content:"▾"; font-size:.9em; transition:transform .2s ease}
+.abs[open] summary::after{transform:rotate(180deg)}
+.abs summary:hover{color:var(--cool-2)}
+.abs-body{margin-top:.55rem; padding:.9rem 1rem; background:var(--cool-wash);
+  border:1px solid var(--line-soft); border-left:3px solid var(--cool); border-radius:0 8px 8px 0}
+.abs-body p{margin:0 0 .7rem; font-size:.83rem; line-height:1.6; color:var(--ink-soft)}
+.abs-body p:last-child{margin-bottom:0}
+.abs-h{font-family:"IBM Plex Mono",monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--cool); font-weight:600; margin:0 0 .35rem}
+.abs-h + p{margin-top:0}
+.abs-affil{font-size:.75rem; color:var(--muted); margin:0 0 .6rem}
+
+/* ---- Register ---- */
+.reg-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(1.4rem,3vw,3rem); align-items:start}
+@media (max-width:820px){ .reg-grid{grid-template-columns:1fr} }
+.reg-copy h2{font-size:var(--s-4); font-weight:700}
+.reg-copy p{color:var(--ink-soft); margin:1rem 0 0}
+.reg-points{list-style:none; padding:0; margin:1.6rem 0 0; display:grid; gap:.9rem}
+.reg-points li{display:grid; grid-template-columns:auto 1fr; gap:.75rem; align-items:start}
+.reg-points svg{width:20px; height:20px; color:var(--cool); margin-top:.15rem; flex:none}
+.reg-points b{color:var(--ink)}
+.reg-points span{color:var(--muted); font-size:var(--s--1)}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:clamp(1.4rem,3vw,2rem); box-shadow:var(--shadow)}
+.card h3{font-size:var(--s-2); margin-bottom:.3rem}
+.card .card-sub{color:var(--muted); font-size:var(--s--1); margin-bottom:1.4rem}
+.field{display:flex; flex-direction:column; gap:.4rem; margin-bottom:1.05rem}
+.field label{font-size:var(--s--1); font-weight:600}
+.field .req{color:var(--warm)}
+.field input[type=text], .field input[type=email], .field select{
+  font:inherit; padding:.7rem .85rem; border:1px solid var(--line); border-radius:9px;
+  background:var(--surface-2); color:var(--ink); width:100%;
+}
+.field input:focus, .field select:focus{border-color:var(--cool); outline:none; box-shadow:0 0 0 3px var(--cool-wash)}
+.seg{display:flex; gap:.5rem}
+.seg label{flex:1; display:flex; align-items:center; justify-content:center; gap:.4rem; padding:.6rem; border:1px solid var(--line); border-radius:9px; cursor:pointer; font-size:var(--s--1); font-weight:500; background:var(--surface-2)}
+.seg input{position:absolute; opacity:0; width:0; height:0}
+.seg label:has(input:checked){border-color:var(--cool); background:var(--cool-wash); color:var(--cool); font-weight:600}
+.privacy{font-size:.78rem; color:var(--muted); margin:.4rem 0 0; line-height:1.5}
+.privacy a{color:var(--cool)}
+.card .btn-primary{width:100%; justify-content:center}
+
+/* email-to-register card */
+.reg-lead{color:var(--ink-soft); font-size:var(--s--1); margin:0 0 1.3rem}
+.mail-line{text-align:center; font-size:var(--s--1); color:var(--muted); margin:.9rem 0 1.2rem}
+.mail-line a{color:var(--cool); font-family:"IBM Plex Mono",monospace; font-size:.92em;
+  text-decoration:none; border-bottom:1px solid var(--line); word-break:break-all}
+.mail-line a:hover{border-color:var(--cool)}
+
+/* ---- Info strip ---- */
+.info{background:var(--surface-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.info-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,3vw,2.4rem)}
+@media (max-width:760px){ .info-grid{grid-template-columns:1fr} }
+.info h3{font-size:var(--s-1); display:flex; align-items:center; gap:.5rem}
+.info h3 svg{width:18px; height:18px; color:var(--cool)}
+.info p{color:var(--ink-soft); font-size:var(--s--1); margin:.6rem 0 0}
+.info a{color:var(--cool); text-decoration:none; border-bottom:1px solid var(--line)}
+.info a:hover{border-color:var(--cool)}
+
+footer{padding:2.6rem 0; text-align:center; color:var(--muted); font-size:var(--s--1)}
+footer .brandline{font-family:"Bricolage Grotesque",sans-serif; font-weight:700; color:var(--ink); font-size:var(--s-1)}
+footer .sep{margin:0 .5rem; opacity:.5}
+
+/* theme toggle */
+.theme-btn{position:fixed; top:1rem; right:1rem; z-index:40; width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer; box-shadow:var(--shadow);
+  display:flex; align-items:center; justify-content:center}
+.theme-btn svg{width:18px; height:18px}
+/* show the icon of the CURRENT theme: sun in light, moon in dark */
+.theme-btn .sun{display:block}
+.theme-btn .moon{display:none}
+@media (prefers-color-scheme:dark){
+  .theme-btn .sun{display:none}
+  .theme-btn .moon{display:block}
+}
+:root[data-theme="dark"] .theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .moon{display:block}
+:root[data-theme="light"] .theme-btn .sun{display:block}
+:root[data-theme="light"] .theme-btn .moon{display:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#programme">Skip to programme</a>
+
+<button class="theme-btn" id="themeToggle" aria-label="Toggle light / dark theme" title="Toggle theme">
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+</button>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow">
+      <span class="eyebrow">ETH Zürich</span>
+      <span class="dot"></span>
+      <span class="eyebrow">30 – 31 July 2026</span>
+      <span class="dot"></span>
+      <span class="eyebrow">Hybrid · in person + online</span>
+    </div>
+    <h1>Tomographic<br>Summer <span class="em">Chill</span></h1>
+    <p class="lede">Two easy mornings of looking into the Earth — dense arrays and DAS fibres, ambient noise, full-waveform inversion and electrical conductivity. Short talks, long coffee breaks, good company.</p>
+    <div class="facts">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>30 – 31 July 2026 · 09:00–12:10</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>LEE building, ETH Zürich</span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.6v6.8a1 1 0 0 1-1.45.88L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Zoom link for remote guests</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#register">Register &amp; get the Zoom link
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#programme">See the programme</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ PROGRAMME ============================ -->
+<section id="programme">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Preliminary programme</span>
+        <h2>Two mornings, ten talks</h2>
+      </div>
+      <p>60-minute keynotes open and close each day; 20-minute talks in between. Times are Zürich local (CEST).</p>
+    </div>
+
+    <div class="days">
+      <!-- DAY 1 -->
+      <div class="day">
+        <div class="day-head">
+          <div>
+            <div class="d-date">Wed 30 July</div>
+            <div class="d-sub">Day one</div>
+          </div>
+          <span class="d-room">LEE C114</span>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">09:00</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://faculty.ustc.edu.cn/hjyao/en/index.htm" target="_blank" rel="noopener">Huajian Yao</a> <span class="tag">Keynote</span></div>
+            <div class="title">High-resolution imaging of fault-zone structures and their temporal variation from dense arrays</div>
+            <details class="abs">
+              <summary>Read abstract</summary>
+              <div class="abs-body">
+                <p class="abs-affil">Huajian Yao · University of Science and Technology of China</p>
+                <p>High-resolution imaging of fault zone structure is essential for elucidating the seismogenic environment, seismicity distribution, and earthquake hazard potential. Temporal variations in these structural attributes also provide valuable constraints on stress changes and earthquake nucleation processes. To address these objectives, we developed ambient-noise direct tomographic techniques capable of inverting for 3-D isotropic, azimuthally anisotropic, and radially anisotropic Vs structures, as well as a linear-array double-difference adjoint tomography method for high-resolution 2-D Vs imaging.</p>
+                <p>In conjunction with the standard spectral ratio (SSR) approach, our analyses reveal the presence of a low-velocity fracture zone exhibiting pronounced seismic anisotropy and significant amplification effects within the eastern segment of the Tanlu fault zone in eastern China. Extending this framework to the Anninghe fault zone in southwestern China, we conducted integrated passive- and active-source investigations to resolve both the detailed fault zone architecture and its temporal evolution. Our results demonstrate that tidal forcing substantially modulates seismic velocity variations within the compliant, low-velocity fracture zone — primarily interpreted as a consequence of tidally controlled opening and closure of microcracks and fractures.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">10:00</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.MjQ5Nzgx.TGlzdC83NzMsOTI0MjA1OTI2.html" target="_blank" rel="noopener">Daniel Bowden</a></div>
+            <div class="title">Shallow tomography in cities and along rail lines: DAS fibres and ambient noise</div>
+          </div>
+        </div>
+
+        <div class="slot brk">
+          <span class="time">10:20</span>
+          <span class="who">☕ Coffee break</span>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">10:30</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.federico-munch.html" target="_blank" rel="noopener">Federico Munch</a></div>
+            <div class="title">Multi-scale electrical conductivity model of the contiguous United States</div>
+          </div>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">10:50</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.Mjk5NDM1.TGlzdC83NzMsOTI0MjA1OTI2.html" target="_blank" rel="noopener">Carl Schiller</a></div>
+            <div class="title tbd">Title to be confirmed</div>
+          </div>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">11:10</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://www.earth.ox.ac.uk/people/paula-koelemeijer" target="_blank" rel="noopener">Paula Koelemeijer</a> <span class="tag">Keynote</span></div>
+            <div class="title tbd">Title to be confirmed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 2 -->
+      <div class="day">
+        <div class="day-head">
+          <div>
+            <div class="d-date">Thu 31 July</div>
+            <div class="d-sub">Day two</div>
+          </div>
+          <span class="d-room">LEE E101</span>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">09:00</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://faculty.ustc.edu.cn/zhanghaijiang/en/index.htm" target="_blank" rel="noopener">Haijiang Zhang</a> <span class="tag">Keynote</span></div>
+            <div class="title">Joint geophysical inversion &amp; neural-network seismic tomography</div>
+            <details class="abs">
+              <summary>Read abstract</summary>
+              <div class="abs-body">
+                <p class="abs-affil">Haijiang Zhang · University of Science and Technology of China · two abstracts submitted</p>
+                <p class="abs-h">1 · Joint geophysical inversion: methods and applications</p>
+                <p>Various geophysical methods have been used to determine different geophysical properties of the subsurface medium, including seismic velocity tomography, magnetotelluric inversion, and gravity inversion. Due to inherent limitations of individual inversion methods, null space inevitably exists in different models. As a result, the inverted models may exhibit different information, making it difficult to jointly interpret them. In this presentation, I will introduce different joint geophysical inversion methods and their applications, which show that the subsurface structures are better constrained.</p>
+                <p class="abs-h">2 · Seismic velocity tomography based on neural networks</p>
+                <p>Surface-wave tomography based on dispersion and seismic travel-time tomography are important approaches for imaging the velocity structure at various scales. However, both methods are highly sensitive to the choice of the initial velocity model and regularization parameters. Here we incorporate neural networks into seismic velocity tomography to mitigate these limitations: a surface-wave tomography method based on a physics-informed neural network constrained by the eikonal equation (a meshless approach with data-adaptive resolution, requiring no initial model or explicit regularization), and a combination of deep neural networks with conventional travel-time tomography, using an untrained network to parameterize the velocity model. Synthetic and real tests demonstrate higher accuracy than conventional methods, recovering fine-scale structures while maintaining stability in regions with sparse data coverage.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">10:00</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.sebastian-noe.html" target="_blank" rel="noopener">Sebastian Noe</a></div>
+            <div class="title">Unlocking hidden body-wave arrivals in global FWI</div>
+          </div>
+        </div>
+
+        <div class="slot brk">
+          <span class="time">10:20</span>
+          <span class="who">☕ Coffee break</span>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">10:30</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://cos.ethz.ch/" target="_blank" rel="noopener">Naomi Kaplunov</a></div>
+            <div class="title">Smooth operators: how our individual regularisation choices feed into ensemble tomographic models</div>
+          </div>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">10:50</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.MzQ3MDUx.TGlzdC83NzMsOTI0MjA1OTI2.html" target="_blank" rel="noopener">Sheng Wang</a></div>
+            <div class="title">Looking into Earth's interior with seismic-event coda correlation</div>
+          </div>
+        </div>
+
+        <div class="slot talk">
+          <span class="time">11:10</span>
+          <div class="slot-main">
+            <div class="who"><a href="https://georessources.univ-lorraine.fr/membres-du-laboratoire/paul-cupillard/" target="_blank" rel="noopener">Paul Cupillard</a> <span class="tag">Keynote</span></div>
+            <div class="title">Downscaling FWI velocity models for quantifying structural uncertainties</div>
+            <details class="abs">
+              <summary>Read abstract</summary>
+              <div class="abs-body">
+                <p class="abs-affil">Paul Cupillard · Université de Lorraine / GeoRessources, Nancy</p>
+                <p>Although advances in data acquisition, computational power, and automated interpretation techniques have significantly improved seismic imaging, detecting fine-scale geological structures such as faults remains challenging because of the physical limitations of seismic data. Since seismic waves are inherently band-limited, the resolution of the resulting images is also limited, making the interpretation of geological structures inherently uncertain. These uncertainties hinder our understanding of lithospheric dynamics across all spatial scales and increase the financial risks associated with subsurface exploration and exploitation projects.</p>
+                <p>To quantify structural uncertainties, we propose a downscaling method for models obtained by Full Waveform Inversion (FWI). The method relies on inverse homogenization. It generates a large ensemble of fine-scale models consistent with a given FWI model, thereby enabling the estimation of uncertainties associated with fault geometry and displacement. The fine-scale model space combines a kinematic parameterization of faults with geostatistical simulations of a fine-layering velocity field. The problem is formulated in a Bayesian way and solved using an adaptive Metropolis–Hastings algorithm. It can be applied locally to a selected region of a large FWI model, reducing both memory requirements and computational cost. Validation on a synthetic case demonstrates robust estimates of the uncertainties associated with faults.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REGISTER ============================ -->
+<section id="register">
+  <div class="wrap reg-grid">
+    <div class="reg-copy">
+      <span class="eyebrow">Registration</span>
+      <h2>Save your seat</h2>
+      <p>Registration is free and takes ten seconds. Tell us whether you're joining in the room or online — everyone who registers gets a reminder before each morning, and remote guests receive the Zoom link by email.</p>
+      <ul class="reg-points">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          <div><b>A reminder, not spam.</b> <span>One confirmation now, one short reminder before each day. Nothing else.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.55-2.28A1 1 0 0 1 21 8.6v6.8a1 1 0 0 1-1.45.88L15 14"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
+          <div><b>Zoom link, emailed.</b> <span>To keep the session calm we don't post the link publicly — remote registrants get it by email.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><b>Your email, only for this.</b> <span>Used solely to send you reminders and the link, then deleted after the workshop.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Registration is a plain email. The address is assembled at runtime in JS
+         so that address-harvesting bots don't pick it out of the HTML source. -->
+    <div class="card" id="regCard">
+      <h3>Register</h3>
+      <p class="card-sub">Free · 30–31 July 2026 · ETH Zürich + online</p>
+
+      <p class="reg-lead">No forms, no accounts. Send us a one-line email and you're on the list. Joining remotely? We'll reply with the Zoom link before the workshop.</p>
+
+      <a class="btn btn-primary" id="regMail" href="#">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+        Email us to register
+      </a>
+
+      <p class="mail-line">or write directly to <a id="mailText" href="#">…</a></p>
+
+      <p class="privacy">We keep your name and email <b>only</b> to send you reminders and the Zoom link for this workshop, and delete them afterwards. Nothing is shared with anyone. <a href="#privacy">Privacy note</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ INFO ============================ -->
+<section class="info" id="privacy">
+  <div class="wrap info-grid">
+    <div>
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Venue</h3>
+      <p>ETH Zürich, <b>LEE building</b> (Leonhardstrasse 21, 8092 Zürich). Day 1 in room C114, Day 2 in room E101. A few minutes from Zürich main station.<br>
+      <a href="https://ethz.ch/en/campus/access/zurich-city-maps.html" target="_blank" rel="noopener">Campus map &amp; directions ↗</a></p>
+    </div>
+    <div>
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Format</h3>
+      <p>Two mornings, 09:00–12:10 CEST. In-person in the LEE building with a Zoom stream for remote guests. Come for a talk or stay the morning — it's a chill format.</p>
+    </div>
+    <div>
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>Contact &amp; privacy</h3>
+      <p>Questions? Email <a data-mail href="#">the organisers</a>. We store registration emails only to send reminders and the Zoom link, and delete them after the workshop (Swiss FADP / GDPR).</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brandline">Tomographic Summer Chill</div>
+    <p style="margin:.5rem 0 0">ETH Zürich <span class="sep">·</span> 30–31 July 2026 <span class="sep">·</span> LEE building &amp; online</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- theme toggle (respects OS default, remembers choice) ---------- */
+(function(){
+  var root = document.documentElement, key='tsc-theme';
+  try{ var saved=localStorage.getItem(key); if(saved) root.setAttribute('data-theme',saved); }catch(e){}
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var isDark = getComputedStyle(root).getPropertyValue('--bg').trim().indexOf('#0')===0
+      || root.getAttribute('data-theme')==='dark'
+      || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem(key,next); }catch(e){}
+    resize();
+  });
+})();
+
+/* ---------- hero wavefield: faint tomographic contour lines ---------- */
+(function(){
+  var c = document.getElementById('field'), ctx = c.getContext('2d');
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var W,H,dpr,t=0;
+  window.resize = function(){
+    dpr = Math.min(devicePixelRatio||1, 2);
+    W = c.offsetWidth; H = c.offsetHeight;
+    c.width = W*dpr; c.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  };
+  function line(){ return getComputedStyle(document.documentElement).getPropertyValue('--grid').trim() || 'rgba(13,110,136,.1)'; }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle = line(); ctx.lineWidth = 1.1;
+    var rows = 16, amp = H*0.05;
+    for(var i=0;i<rows;i++){
+      var baseY = (H/(rows-1))*i;
+      ctx.beginPath();
+      for(var x=0;x<=W;x+=14){
+        var y = baseY
+          + Math.sin(x*0.006 + i*0.55 + t)*amp*Math.sin(i*0.4)
+          + Math.cos(x*0.011 - t*0.6 + i)*amp*0.4;
+        x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    if(!reduce){ t += 0.006; requestAnimationFrame(draw); }
+  }
+  window.addEventListener('resize', function(){ resize(); if(reduce) draw(); });
+  resize(); draw();
+})();
+
+/* ---------- registration = mailto, address assembled at runtime ----------
+   The address never appears in the HTML source, which stops the great majority
+   of address-harvesting bots. Every link with [data-mail] gets wired up too. */
+(function(){
+  var user = 'yuhan.wang', domain = 'eaps.ethz.ch';
+  var addr = user + '@' + domain;
+
+  var subject = 'Tomographic Summer Chill — registration';
+  var body = [
+    'Hi Yuhan,',
+    '',
+    'I would like to register for the Tomographic Summer Chill (30–31 July 2026).',
+    '',
+    'Name:',
+    'Affiliation:',
+    'Joining: in person / online   <- please keep one',
+    '',
+    'Thanks!'
+  ].join('\n');
+
+  var composed = 'mailto:' + addr
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+
+  var btn = document.getElementById('regMail');
+  if(btn){ btn.href = composed; }
+
+  var shown = document.getElementById('mailText');
+  if(shown){ shown.textContent = addr; shown.href = 'mailto:' + addr; }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-mail]'), function(el){
+    el.href = 'mailto:' + addr;
+  });
+})();
+</script>
+
+<!-- ==================================================================
+  REGISTRATION: a plain email to the organiser.
+  The address is assembled at runtime in JS (see the mailto block above) so
+  it never sits in the HTML source for scrapers to harvest — which is also
+  why it is not written out here. To change it, edit the `user` / `domain`
+  variables in that block. That is the single source of truth.
+
+  Zoom: run a normal recurring Meeting (the ETH staff licence already
+  covers 500 people, no add-on needed). Keep the Waiting Room on and
+  BCC — never To — when mailing the join link to the list.
+=================================================================== -->
+</body>
+</html>
