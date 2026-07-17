@@ -237,9 +237,17 @@ section{padding:clamp(3rem,8vh,5.5rem) 0}
 .info a{color:var(--cool); text-decoration:none; border-bottom:1px solid var(--line)}
 .info a:hover{border-color:var(--cool)}
 
-footer{padding:2.6rem 0; text-align:center; color:var(--muted); font-size:var(--s--1)}
+footer{padding:2.6rem 0 3rem; text-align:center; color:var(--muted); font-size:var(--s--1)}
 footer .brandline{font-family:"Bricolage Grotesque",sans-serif; font-weight:700; color:var(--ink); font-size:var(--s-1)}
 footer .sep{margin:0 .5rem; opacity:.5}
+.organisers{margin:1.5rem auto 0; padding-top:1.3rem; border-top:1px solid var(--line);
+  max-width:34rem; line-height:1.8; color:var(--muted)}
+.organisers a{color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line);
+  transition:color .12s ease, border-color .12s ease}
+.organisers a:hover{color:var(--cool); border-color:var(--cool)}
+.org-group{display:block; font-size:.9em; margin-top:.25rem}
+.org-group a{color:var(--muted); border-bottom-color:transparent}
+.org-group a:hover{color:var(--cool); border-bottom-color:var(--cool)}
 
 /* theme toggle */
 .theme-btn{position:fixed; top:1rem; right:1rem; z-index:40; width:40px; height:40px; border-radius:50%;
@@ -496,7 +504,9 @@ footer .sep{margin:0 .5rem; opacity:.5}
     <div>
       <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Venue</h3>
       <p>ETH Zürich, <b>LEE building</b> (Leonhardstrasse 21, 8092 Zürich). Day 1 in room C114, Day 2 in room E101. A few minutes from Zürich main station.<br>
-      <a href="https://ethz.ch/en/campus/access/zurich-city-maps.html" target="_blank" rel="noopener">Campus map &amp; directions ↗</a></p>
+      <a href="https://ethz.ch/en/campus/access.html" target="_blank" rel="noopener">Getting to ETH ↗</a>
+      <span class="sep">·</span>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Leonhardstrasse+21%2C+8092+Z%C3%BCrich" target="_blank" rel="noopener">Map pin ↗</a></p>
     </div>
     <div>
       <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Format</h3>
@@ -513,6 +523,14 @@ footer .sep{margin:0 .5rem; opacity:.5}
   <div class="wrap">
     <div class="brandline">Tomographic Summer Chill</div>
     <p style="margin:.5rem 0 0">ETH Zürich <span class="sep">·</span> 30–31 July 2026 <span class="sep">·</span> LEE building &amp; online</p>
+    <p class="organisers">
+      Organised by
+      <!-- TODO: swap to https://wangyuhan2002.github.io/ once the personal site is live -->
+      <a href="https://cos.ethz.ch/people/person-detail.yuhan-wang.html" target="_blank" rel="noopener">Yuhan&nbsp;Wang</a>
+      and
+      <a href="https://cos.ethz.ch/people/person-detail.andreas-fichtner.html" target="_blank" rel="noopener">Andreas&nbsp;Fichtner</a>
+      <span class="org-group"><a href="https://cos.ethz.ch/" target="_blank" rel="noopener">Seismology and Wave Physics</a> · ETH Zürich</span>
+    </p>
   </div>
 </footer>
 
