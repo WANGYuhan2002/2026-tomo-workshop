@@ -254,8 +254,11 @@ a.d-room:hover{background:var(--cool); color:#fff}
 .g-name a:hover, .g-name a:hover::after{color:var(--cool); border-color:var(--cool)}
 .g-inst{font-size:.78rem; color:var(--muted); line-height:1.35}
 .g-topic{font-size:.86rem; color:var(--ink-soft); margin-top:.35rem; line-height:1.4}
-.guests-cta{display:flex; flex-wrap:wrap; align-items:center; gap:.8rem 1.2rem}
-.guests-note{font-size:.8rem; color:var(--muted); margin:0}
+.g-signup{margin-top:auto; padding-top:.9rem; align-self:flex-start; display:inline-flex; align-items:center; gap:.3rem;
+  font-size:.85rem; font-weight:600; color:var(--cool); text-decoration:none}
+.g-signup::after{content:"↗"; font-size:.9em}
+.g-signup:hover{text-decoration:underline; text-underline-offset:3px; color:var(--cool-2)}
+.guests-note{font-size:.83rem; color:var(--muted); margin:.4rem 0 0}
 
 /* ---- Info strip ---- */
 .info{background:var(--surface-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
@@ -529,32 +532,29 @@ footer .sep{margin:0 .5rem; opacity:.5}
         <div class="g-name"><a href="http://staff.ustc.edu.cn/~hjyao/vitae.htm" target="_blank" rel="noopener">Huajian Yao</a></div>
         <div class="g-inst">University of Science and Technology of China</div>
         <div class="g-topic">Fault-zone imaging, ambient noise &amp; DAS</div>
+        <a class="g-signup" href="https://docs.google.com/spreadsheets/d/1CFbifoIoIrrZxrfsy_6arhYdxFB6B8__ZXYrdkKWngc/edit?gid=0#gid=0" target="_blank" rel="noopener">Sign up to talk</a>
       </div>
       <div class="guest">
         <div class="g-name"><a href="https://earthquake.ustc.edu.cn/zhjen/" target="_blank" rel="noopener">Haijiang Zhang</a></div>
         <div class="g-inst">University of Science and Technology of China</div>
         <div class="g-topic">Joint &amp; neural-network tomography</div>
+        <a class="g-signup" href="https://docs.google.com/spreadsheets/d/1CFbifoIoIrrZxrfsy_6arhYdxFB6B8__ZXYrdkKWngc/edit?gid=427142329#gid=427142329" target="_blank" rel="noopener">Sign up to talk</a>
       </div>
       <div class="guest">
         <div class="g-name"><a href="https://www.earth.ox.ac.uk/people/paula-koelemeijer" target="_blank" rel="noopener">Paula Koelemeijer</a></div>
         <div class="g-inst">University of Oxford</div>
         <div class="g-topic">Deep-Earth imaging, normal modes, uncertainty</div>
+        <a class="g-signup" href="https://docs.google.com/spreadsheets/d/1CFbifoIoIrrZxrfsy_6arhYdxFB6B8__ZXYrdkKWngc/edit?gid=1860412313#gid=1860412313" target="_blank" rel="noopener">Sign up to talk</a>
       </div>
       <div class="guest">
         <div class="g-name"><a href="https://georessources.univ-lorraine.fr/membres-du-laboratoire/paul-cupillard/" target="_blank" rel="noopener">Paul Cupillard</a></div>
         <div class="g-inst">Université de Lorraine, Nancy</div>
         <div class="g-topic">Full-waveform inversion &amp; uncertainty</div>
+        <a class="g-signup" href="https://docs.google.com/spreadsheets/d/1CFbifoIoIrrZxrfsy_6arhYdxFB6B8__ZXYrdkKWngc/edit?gid=1447878470#gid=1447878470" target="_blank" rel="noopener">Sign up to talk</a>
       </div>
     </div>
 
-    <div class="guests-cta">
-      <!-- href + label set at runtime: the Google sign-up sheet if configured, otherwise an email fallback -->
-      <a class="btn btn-cool" id="guestSignup" href="#" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
-        <span id="guestSignupLabel">Sign up to chat</span>
-      </a>
-      <p class="guests-note">Pick a free slot on the shared sheet — first come, first served.</p>
-    </div>
+    <p class="guests-note">Each guest has their own sheet — pick a free slot for whoever you'd like to talk to. First come, first served.</p>
   </div>
 </section>
 
@@ -797,23 +797,6 @@ footer .sep{margin:0 .5rem; opacity:.5}
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(function(){ URL.revokeObjectURL(u); }, 1500);
     });
-  }
-
-  /* ---- Guest sign-up: link to the Google sheet if set, otherwise fall back to email ---- */
-  var signup = document.getElementById('guestSignup');
-  if(signup){
-    var SHEET = '';  // <-- paste the Google sign-up sheet / form URL here to switch from email to the sheet
-    var label = document.getElementById('guestSignupLabel');
-    if(SHEET){
-      signup.href = SHEET;
-      if(label){ label.textContent = 'Open the sign-up sheet'; }
-    } else {
-      signup.href = 'mailto:' + addr
-        + '?subject=' + encodeURIComponent('Tomographic Summer Chill — chat with a guest')
-        + '&body=' + encodeURIComponent(['Hi Yuhan,','',"I'd like to chat with one of the visiting guests (Yao / Zhang / Koelemeijer / Cupillard). When would work?",'','Name:','','Thanks!'].join('\n'));
-      signup.removeAttribute('target');
-      if(label){ label.textContent = 'Email to arrange a chat'; }
-    }
   }
 })();
 </script>
