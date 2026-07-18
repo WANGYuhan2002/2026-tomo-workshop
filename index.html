@@ -159,13 +159,17 @@ section{padding:clamp(3rem,8vh,5.5rem) 0}
 .slot{display:grid; grid-template-columns:auto 1fr; gap:1rem; padding:1rem 1.4rem; border-top:1px solid var(--line-soft)}
 .slot:first-of-type{border-top:none}
 .slot .time{font-family:"IBM Plex Mono",monospace; font-size:var(--s--1); color:var(--cool); padding-top:.15rem; white-space:nowrap}
-.slot-main{display:flex; flex-direction:column; gap:.35rem; min-width:0}
-.slot .who{font-weight:700; color:var(--ink)}
+.slot-main{display:flex; flex-direction:column; gap:.15rem; min-width:0}
+.slot .who{font-weight:700; color:var(--ink); font-size:1.05rem; line-height:1.25; letter-spacing:-.01em}
 .slot .who a{color:inherit; text-decoration:none; border-bottom:1px solid var(--line); transition:color .12s ease, border-color .12s ease}
-.slot .who a::after{content:"↗"; font-size:.72em; margin-left:.18em; color:var(--muted); font-weight:400}
+.slot .who a::after{content:"↗"; font-size:.72em; margin-left:.16em; color:var(--muted); font-weight:400}
 .slot .who a:hover{color:var(--cool); border-color:var(--cool)}
 .slot .who a:hover::after{color:var(--cool)}
-.slot .title{color:var(--ink-soft); font-size:var(--s--1); line-height:1.45}
+/* affiliation — always visible, the "who is from where" line */
+.affil{display:flex; align-items:center; gap:.35rem; font-size:.76rem; color:var(--muted); line-height:1.3}
+.affil svg{width:12px; height:12px; flex:none; opacity:.75}
+.affil.ext{color:var(--cool)}          /* invited / external guests read in accent */
+.slot .title{color:var(--ink-soft); font-size:.95rem; line-height:1.5; margin-top:.4rem}
 .slot .tag{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--warm); border:1px solid currentColor; border-radius:5px; padding:.05rem .4rem; margin-left:.5rem; vertical-align:middle}
 .slot .tbd{color:var(--muted); font-style:italic}
 .slot.brk{background:var(--surface-2)}
@@ -328,11 +332,11 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">09:00</span>
           <div class="slot-main">
             <div class="who"><a href="https://faculty.ustc.edu.cn/hjyao/en/index.htm" target="_blank" rel="noopener">Huajian Yao</a> <span class="tag">Keynote</span></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Science and Technology of China</div>
             <div class="title">High-resolution imaging of fault-zone structures and their temporal variation from dense arrays</div>
             <details class="abs">
               <summary>Read abstract</summary>
               <div class="abs-body">
-                <p class="abs-affil">Huajian Yao · University of Science and Technology of China</p>
                 <p>High-resolution imaging of fault zone structure is essential for elucidating the seismogenic environment, seismicity distribution, and earthquake hazard potential. Temporal variations in these structural attributes also provide valuable constraints on stress changes and earthquake nucleation processes. To address these objectives, we developed ambient-noise direct tomographic techniques capable of inverting for 3-D isotropic, azimuthally anisotropic, and radially anisotropic Vs structures, as well as a linear-array double-difference adjoint tomography method for high-resolution 2-D Vs imaging.</p>
                 <p>In conjunction with the standard spectral ratio (SSR) approach, our analyses reveal the presence of a low-velocity fracture zone exhibiting pronounced seismic anisotropy and significant amplification effects within the eastern segment of the Tanlu fault zone in eastern China. Extending this framework to the Anninghe fault zone in southwestern China, we conducted integrated passive- and active-source investigations to resolve both the detailed fault zone architecture and its temporal evolution. Our results demonstrate that tidal forcing substantially modulates seismic velocity variations within the compliant, low-velocity fracture zone — primarily interpreted as a consequence of tidally controlled opening and closure of microcracks and fractures.</p>
               </div>
@@ -344,6 +348,7 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">10:00</span>
           <div class="slot-main">
             <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.MjQ5Nzgx.TGlzdC83NzMsOTI0MjA1OTI2.html" target="_blank" rel="noopener">Daniel Bowden</a></div>
+            <div class="affil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>ETH Zürich</div>
             <div class="title">Shallow tomography in cities and along rail lines: DAS fibres and ambient noise</div>
           </div>
         </div>
@@ -357,6 +362,7 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">10:30</span>
           <div class="slot-main">
             <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.federico-munch.html" target="_blank" rel="noopener">Federico Munch</a></div>
+            <div class="affil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>ETH Zürich</div>
             <div class="title">Multi-scale electrical conductivity model of the contiguous United States</div>
           </div>
         </div>
@@ -365,6 +371,7 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">10:50</span>
           <div class="slot-main">
             <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.Mjk5NDM1.TGlzdC83NzMsOTI0MjA1OTI2.html" target="_blank" rel="noopener">Carl Schiller</a></div>
+            <div class="affil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>ETH Zürich</div>
             <div class="title">Around the world in two orbits: matching major-arc phases and refining structure in global full-waveform inversion</div>
           </div>
         </div>
@@ -373,11 +380,11 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">11:10</span>
           <div class="slot-main">
             <div class="who"><a href="https://www.earth.ox.ac.uk/people/paula-koelemeijer" target="_blank" rel="noopener">Paula Koelemeijer</a> <span class="tag">Keynote</span></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Oxford</div>
             <div class="title">Quantitative imaging across scales using linear and non-linear inference methods</div>
             <details class="abs">
               <summary>Read abstract</summary>
               <div class="abs-body">
-                <p class="abs-affil">Paula Koelemeijer · University of Oxford</p>
                 <p>Seismic tomography models are routinely developed and interpreted in terms of Earth composition and dynamics. However, without information on both uncertainties and resolution, it is difficult to robustly interpret the imaged structures. Resolution information is particularly important during interdisciplinary interpretations, e.g. when using the ratio between Vp and Vs to constrain composition or to deduce the presence of fluids. For joint interpretations of these velocities, it is essential that they share the same local resolution. Knowledge of model uncertainties is equally important, particularly for decision making, e.g. when estimating the volume of a geothermal aquifer based on low seismic velocities or the location of a fault in the subsurface.</p>
                 <p>To address these issues, we utilise Backus–Gilbert (BG) based inference methods. These enable us to retrieve local model properties with associated uncertainties, making probabilistic interpretations possible. At the same time, by specifying a priori information on the resolution through target kernels, we have direct control on the resulting model resolution. This allows us to construct models of both Vs and Vp with the same local resolution, enabling robust joint interpretations.</p>
                 <p>In this talk, I will summarise our efforts in quantitative imaging using BG approaches — focusing on projects where we obtain models with the same resolution for Vp and Vs, ranging from the deep mantle to the crust, from global to local scale. I will also discuss how we are extending the linearised BG framework to non-linear applications and non-volumetric inference problems. These applications illustrate the advantages of Backus–Gilbert inferences for constraining and interpreting Earth properties.</p>
@@ -401,11 +408,11 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">09:00</span>
           <div class="slot-main">
             <div class="who"><a href="https://faculty.ustc.edu.cn/zhanghaijiang/en/index.htm" target="_blank" rel="noopener">Haijiang Zhang</a> <span class="tag">Invited · 1 of 2</span></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Science and Technology of China</div>
             <div class="title">Joint geophysical inversion: methods and applications</div>
             <details class="abs">
               <summary>Read abstract</summary>
               <div class="abs-body">
-                <p class="abs-affil">Haijiang Zhang · University of Science and Technology of China</p>
                 <p>Various geophysical methods have been used to determine different geophysical properties of the subsurface medium, including seismic velocity tomography, magnetotelluric inversion, and gravity inversion. Due to inherent limitations of individual inversion methods, null space inevitably exists in different models. As a result, the inverted models may exhibit different information, making it difficult to jointly interpret them. In this presentation, I will introduce different joint geophysical inversion methods and their applications, which show that the subsurface structures are better constrained.</p>
               </div>
             </details>
@@ -416,11 +423,11 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">09:40</span>
           <div class="slot-main">
             <div class="who"><a href="https://faculty.ustc.edu.cn/zhanghaijiang/en/index.htm" target="_blank" rel="noopener">Haijiang Zhang</a> <span class="tag">Invited · 2 of 2</span></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Science and Technology of China</div>
             <div class="title">Seismic velocity tomography based on neural networks</div>
             <details class="abs">
               <summary>Read abstract</summary>
               <div class="abs-body">
-                <p class="abs-affil">Haijiang Zhang · University of Science and Technology of China</p>
                 <p>Surface wave tomography based on dispersion and seismic travel time tomography are important approaches for imaging the velocity structure at various scales. However, both methods are highly sensitive to the choice of the initial velocity model and regularization parameters. Here, we have tried to incorporate neural networks into seismic velocity tomography to mitigate these limitations. We first propose a surface wave tomography method based on a physics-informed neural network that is constrained by the eikonal equation. The new method is a meshless tomography approach with data-adaptive resolution, and does not require an initial velocity model or explicit regularizations. We also combine deep neural networks with conventional traveltime tomography by using an untrained network to parameterize the velocity model, which is then employed to compute synthetic travel times. The misfit between synthetic and observed travel times is minimized by updating the network parameters. Synthetic and real tests demonstrate that the method achieves higher accuracy than conventional methods, recovering fine-scale structures while maintaining the inversion stability in regions with sparse data coverage.</p>
               </div>
             </details>
@@ -431,6 +438,7 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">10:20</span>
           <div class="slot-main">
             <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.sebastian-noe.html" target="_blank" rel="noopener">Sebastian Noe</a></div>
+            <div class="affil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>ETH Zürich</div>
             <div class="title">Unlocking hidden body-wave arrivals in global FWI</div>
           </div>
         </div>
@@ -444,6 +452,7 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">10:50</span>
           <div class="slot-main">
             <div class="who"><a href="https://cos.ethz.ch/" target="_blank" rel="noopener">Noami Kaplunov</a></div>
+            <div class="affil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>ETH Zürich</div>
             <div class="title">Smooth operators: how our individual regularisation choices feed into ensemble tomographic models</div>
           </div>
         </div>
@@ -452,6 +461,7 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">11:10</span>
           <div class="slot-main">
             <div class="who"><a href="https://eaps.ethz.ch/en/people/profile.MzQ3MDUx.TGlzdC83NzMsOTI0MjA1OTI2.html" target="_blank" rel="noopener">Sheng Wang</a></div>
+            <div class="affil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>ETH Zürich</div>
             <div class="title">Looking into Earth's interior with seismic-event coda correlation</div>
           </div>
         </div>
@@ -460,11 +470,11 @@ footer .sep{margin:0 .5rem; opacity:.5}
           <span class="time">11:30</span>
           <div class="slot-main">
             <div class="who"><a href="https://georessources.univ-lorraine.fr/membres-du-laboratoire/paul-cupillard/" target="_blank" rel="noopener">Paul Cupillard</a> <span class="tag">Keynote</span></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>Université de Lorraine, Nancy</div>
             <div class="title">Downscaling FWI velocity models for quantifying structural uncertainties</div>
             <details class="abs">
               <summary>Read abstract</summary>
               <div class="abs-body">
-                <p class="abs-affil">Paul Cupillard · Université de Lorraine / GeoRessources, Nancy</p>
                 <p>Although advances in data acquisition, computational power, and automated interpretation techniques have significantly improved seismic imaging, detecting fine-scale geological structures such as faults remains challenging because of the physical limitations of seismic data. Since seismic waves are inherently band-limited, the resolution of the resulting images is also limited, making the interpretation of geological structures inherently uncertain. These uncertainties hinder our understanding of lithospheric dynamics across all spatial scales and increase the financial risks associated with subsurface exploration and exploitation projects.</p>
                 <p>To quantify structural uncertainties, we propose a downscaling method for models obtained by Full Waveform Inversion (FWI). The method relies on inverse homogenization. It generates a large ensemble of fine-scale models consistent with a given FWI model, thereby enabling the estimation of uncertainties associated with fault geometry and displacement. The fine-scale model space combines a kinematic parameterization of faults with geostatistical simulations of a fine-layering velocity field. The problem is formulated in a Bayesian way and solved using an adaptive Metropolis–Hastings algorithm. It can be applied locally to a selected region of a large FWI model, reducing both memory requirements and computational cost. Validation on a synthetic case demonstrates robust estimates of the uncertainties associated with faults.</p>
               </div>
