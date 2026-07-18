@@ -166,9 +166,13 @@ section{padding:clamp(3rem,8vh,5.5rem) 0}
 .slot .who a:hover{color:var(--cool); border-color:var(--cool)}
 .slot .who a:hover::after{color:var(--cool)}
 /* affiliation — always visible, the "who is from where" line */
-.affil{display:flex; align-items:center; gap:.35rem; font-size:.76rem; color:var(--muted); line-height:1.3}
+.affil{display:flex; align-items:center; flex-wrap:wrap; gap:.15rem .4rem; font-size:.76rem; color:var(--muted); line-height:1.3}
 .affil svg{width:12px; height:12px; flex:none; opacity:.75}
 .affil.ext{color:var(--cool)}          /* invited / external guests read in accent */
+.affil-sch{color:var(--cool); text-decoration:none; white-space:nowrap; border-bottom:1px solid transparent; transition:border-color .12s ease}
+.affil-sch::before{content:"·"; margin-right:.4rem; color:var(--muted); opacity:.7}
+.affil-sch::after{content:"↗"; font-size:.85em; margin-left:.12em}
+.affil-sch:hover{border-bottom-color:currentColor}
 .slot .title{color:var(--ink-soft); font-size:.95rem; line-height:1.5; margin-top:.4rem}
 .slot .tag{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--warm); border:1px solid currentColor; border-radius:5px; padding:.05rem .4rem; margin-left:.5rem; vertical-align:middle}
 .slot .tbd{color:var(--muted); font-style:italic}
@@ -327,8 +331,8 @@ footer .sep{margin:0 .5rem; opacity:.5}
         <div class="slot talk">
           <span class="time">09:00</span>
           <div class="slot-main">
-            <div class="who"><a href="https://faculty.ustc.edu.cn/hjyao/en/index.htm" target="_blank" rel="noopener">Huajian Yao</a> <span class="tag">Keynote</span></div>
-            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Science and Technology of China</div>
+            <div class="who"><a href="http://staff.ustc.edu.cn/~hjyao/vitae.htm" target="_blank" rel="noopener">Huajian Yao</a> <span class="tag">Keynote</span></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg><span>University of Science and Technology of China</span><a class="affil-sch" href="https://scholar.google.com/citations?user=3pyAJLwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
             <div class="title">High-resolution imaging of fault-zone structures and their temporal variation from dense arrays</div>
             <details class="abs">
               <summary>Read abstract</summary>
@@ -403,8 +407,8 @@ footer .sep{margin:0 .5rem; opacity:.5}
         <div class="slot talk">
           <span class="time">09:00</span>
           <div class="slot-main">
-            <div class="who"><a href="https://faculty.ustc.edu.cn/zhanghaijiang/en/index.htm" target="_blank" rel="noopener">Haijiang Zhang</a></div>
-            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Science and Technology of China</div>
+            <div class="who"><a href="https://earthquake.ustc.edu.cn/zhjen/" target="_blank" rel="noopener">Haijiang Zhang</a></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg><span>University of Science and Technology of China</span><a class="affil-sch" href="https://scholar.google.com/citations?user=1iWta5AAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
             <div class="title">Joint geophysical inversion: methods and applications</div>
             <details class="abs">
               <summary>Read abstract</summary>
@@ -418,8 +422,8 @@ footer .sep{margin:0 .5rem; opacity:.5}
         <div class="slot talk">
           <span class="time">09:40</span>
           <div class="slot-main">
-            <div class="who"><a href="https://faculty.ustc.edu.cn/zhanghaijiang/en/index.htm" target="_blank" rel="noopener">Haijiang Zhang</a></div>
-            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg>University of Science and Technology of China</div>
+            <div class="who"><a href="https://earthquake.ustc.edu.cn/zhjen/" target="_blank" rel="noopener">Haijiang Zhang</a></div>
+            <div class="affil ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 12 4l8 5.5"/><path d="M5 10v8M19 10v8M10 10v8M14 10v8M3.5 21h17"/></svg><span>University of Science and Technology of China</span><a class="affil-sch" href="https://scholar.google.com/citations?user=1iWta5AAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
             <div class="title">Seismic velocity tomography based on neural networks</div>
             <details class="abs">
               <summary>Read abstract</summary>
